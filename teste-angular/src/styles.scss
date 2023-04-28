@@ -5,6 +5,16 @@
 body {
   margin: 0;
   padding: 0;
+  background: #e5e5e5;
+}
+
+table,
+tr,
+td,
+th {
+  padding: 10px;
+  margin: auto;
+  border: none;
 }
 
 /* HEADER STYLES */
@@ -20,4 +30,13 @@ body {
 
 .mat-toolbar-row {
   justify-content: center;
+}
+
+/* TABLE STYLES */
+.table-list-container {
+  width: 100%;
+}
+
+.table-list-style {
+  background: #fff;
 }
