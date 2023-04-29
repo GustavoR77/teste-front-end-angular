@@ -1,0 +1,64 @@
+.table-list-container {
+  width: 100%;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-list-style {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  background: #fff;
+
+}
+
+.button-column {
+  text-align: end;
+}
+
+.first-column {
+  text-align: start;
+}
+
+.button-add {
+  background: #4486ea !important;
+}
+
+.button-edit {
+  background-color: #e18f53 !important;
+}
+
+.list-content {
+  width: 80%;
+}
+
+.table-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 26px 0 26px;
+}
+
+.main-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.perfil-img {
+  height: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.status-active {
+  color: #2acc30;
+  font-size: 1rem;
+  height: auto;
+}
+
+.status-inactive {
+  color: #ec2424;
+  font-size: 1rem;
+  height: auto;
+}
