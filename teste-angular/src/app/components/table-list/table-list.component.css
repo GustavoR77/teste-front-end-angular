@@ -7,18 +7,9 @@
 }
 
 .table-list-style {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   margin-bottom: 1.5rem;
   background: #fff;
-
-}
-
-.button-column {
-  text-align: end;
-}
-
-.first-column {
-  text-align: start;
 }
 
 .button-add {
@@ -27,6 +18,9 @@
 
 .button-edit {
   background-color: #e18f53 !important;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  box-shadow: none;
 }
 
 .list-content {
@@ -37,7 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 26px 0 26px;
+  padding: 0 16px 0 16px;
 }
 
 .main-title {
@@ -53,12 +47,64 @@
 
 .status-active {
   color: #2acc30;
-  font-size: 1rem;
+  font-size: 14px;
   height: auto;
+  margin-right: -0.3rem;
 }
 
 .status-inactive {
   color: #ec2424;
-  font-size: 1rem;
+  font-size: 14px;
   height: auto;
+  margin-right: -0.3rem;
+}
+
+.name-column {
+  font-size: 1.1rem;
+}
+
+.cnpj-column {
+  font-size: 0.75rem;
+  width: 40%;
+  text-align: start;
+}
+
+.status-column {
+  text-align: start;
+}
+
+.button-column {
+  text-align: end;
+  width: 20%;
+}
+
+.edit-icon {
+  color: #e18f53;
+}
+
+@media only screen and (max-width: 762px) {
+  .list-content {
+    width: 100%;
+  }
+
+  .name-column {
+    text-align: center;
+  }
+
+  .cnpj-column {
+    width: 5%;
+  }
+
+  .status-column {
+    width: 5%;
+  }
+
+  .button-column {
+    text-align: center;
+    width: 5%;
+  }
+
+  .quantity-items {
+    text-align: center;
+  }
 }

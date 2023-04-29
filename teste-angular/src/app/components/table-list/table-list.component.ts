@@ -10,6 +10,7 @@ export class TableListComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'getdetails'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   itemsQty = ELEMENT_DATA.length;
+  mobileCheck = navigator.userAgent;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   ngOnInit() {
@@ -17,6 +18,18 @@ export class TableListComponent {
   }
   getRecord(name: any) {
     alert(name);
+  }
+
+  mobileDevice() {
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
+        this.mobileCheck
+      )
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 export interface PeriodicElement {
