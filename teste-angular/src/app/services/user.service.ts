@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  url = 'http://localhost:3000';
+  url = 'https://demo4231135.mockable.io/';
 
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<any> {
-    return this.http.get(this.url + '/users');
+    return this.http.get(this.url);
   }
 }
