@@ -64,16 +64,16 @@
           <button
             mat-raised-button
             class="button-edit"
-            (click)="getRecord(element.name)"
+            (click)="editUser(element.id)"
             *ngIf="!mobileDevice()"
           >
             EDITAR
           </button>
 
           <mat-icon
-            (click)="getRecord(element.name)"
             *ngIf="mobileDevice()"
             class="edit-icon"
+            (click)="editUser(element.id)"
             >edit</mat-icon
           >
         </td>

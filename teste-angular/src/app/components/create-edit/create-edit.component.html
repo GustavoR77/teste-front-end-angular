@@ -8,20 +8,20 @@
     </div>
     <hr />
     <div class="form-div">
-      <mat-form-field appearance="fill" class="form-style">
+      <form appearance="fill" class="form-style" (ngSubmit)="addUser($event)">
         <label>Nome</label>
-        <input type="text" placeholder="" value="" />
+        <input type="text" name="name" />
         <label>CNPJ</label>
-        <input type="text" placeholder="" value="" />
+        <input type="text" name="cnpj" />
         <label>Status</label>
-        <select placeholder="" value="">
+        <select name="status">
           <option value="Ativo">Ativo</option>
           <option value="Inativo">Inativo</option>
         </select>
         <div class="button-div">
-          <button class="send-button">SALVAR</button>
+          <button type="submit" class="send-button">SALVAR</button>
         </div>
-      </mat-form-field>
+      </form>
     </div>
   </div>
 </div>

@@ -9,25 +9,31 @@ import { Users } from 'src/app/models/users';
   styleUrls: ['./table-list.component.css'],
 })
 export class TableListComponent implements OnInit {
+  displayedColumns: string[] = ['name', 'cnpj', 'status', 'getdetails'];
+  users: Users[] = [];
+
   constructor(private usersService: UserService) {}
 
-  displayedColumns: string[] = ['name', 'cnpj', 'status', 'getdetails'];
-
-  itemsQty = ELEMENT_DATA.length;
   mobileCheck = navigator.userAgent;
-  dataSource = new MatTableDataSource<Users>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Users>(this.users);
+  itemsQty = '';
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
-    const data = this.usersService.getUsers().subscribe((users) => {
-      console.log('teste service', this.usersService);
-      console.log('teste api', users);
+    this.usersService.getUsers().subscribe((data) => {
+      if (data) {
+        this.dataSource = data;
+        this.itemsQty = data.length;
+      }
     });
   }
-  getRecord(name: any) {
-    alert(name);
+
+  editUser(id: any) {
+    console.log('show ID', id);
+    console.log('show ID URL', this.usersService.getUsersByID(id));
+    this.usersService.getUsersByID(id);
   }
 
   mobileDevice() {

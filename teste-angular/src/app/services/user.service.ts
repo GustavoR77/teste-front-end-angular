@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
+import { Users } from '../models/users';
 
 @Injectable({
   providedIn: 'root',
@@ -12,5 +13,11 @@ export class UserService {
 
   getUsers(): Observable<any> {
     return this.http.get(`${environment.apiURL}/users`);
+  }
+  getUsersByID(id: any): Observable<any> {
+    return this.http.get(`${environment.apiURL}/users/:` + id);
+  }
+  postUsers(user: Users) {
+    return this.http.post<any>(`${environment.apiURL}/users`, user);
   }
 }

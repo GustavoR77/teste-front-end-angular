@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { Users } from 'src/app/models/users';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-edit',
@@ -7,13 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateEditComponent implements OnInit {
   mobileCheck = navigator.userAgent;
+  users: Users[] = [
+    {
+      name: '',
+      cnpj: '',
+      status: '',
+    },
+  ];
 
-  constructor() {}
+  userForm = new FormGroup({
+    userFormControl: new FormControl(''),
+  });
+
+  constructor(private usersService: UserService) {}
 
   ngOnInit() {}
 
-  getRecord(name: any) {
-    alert(name);
+  addUser(data: any) {
+    const obj = {
+      name: data.target.name.value,
+      cnpj: data.target.cnpj.value,
+      status: data.target.status.value,
+    };
+
+    console.log('teste obj', obj);
+
+    this.usersService.postUsers(obj).subscribe((data) => {
+      if (data) {
+        console.log(data);
+      }
+    });
   }
 
   mobileDevice() {
