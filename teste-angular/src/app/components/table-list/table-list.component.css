@@ -17,7 +17,7 @@
 }
 
 .button-edit {
-  background-color: #e18f53 !important;
+  background: #e18f53 !important;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   box-shadow: none;
@@ -106,5 +106,9 @@
 
   .quantity-items {
     text-align: center;
+  }
+
+  .table-list-style {
+    margin-bottom: 0.5rem;
   }
 }
