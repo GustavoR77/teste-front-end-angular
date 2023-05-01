@@ -18,10 +18,6 @@ export class CreateEditComponent implements OnInit {
     },
   ];
 
-  userForm = new FormGroup({
-    userFormControl: new FormControl(''),
-  });
-
   constructor(private usersService: UserService) {}
 
   ngOnInit() {}
