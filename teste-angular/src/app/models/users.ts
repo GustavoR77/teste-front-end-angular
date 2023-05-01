@@ -1,5 +1,5 @@
 export interface Users {
-  name: string;
-  cnpj: number | string;
-  status: string;
+  name: string | null | undefined;
+  cnpj: string | null | undefined;
+  status: string | null | undefined;
 }

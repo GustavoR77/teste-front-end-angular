@@ -8,13 +8,44 @@
     </div>
     <hr />
     <div class="form-div">
-      <form appearance="fill" class="form-style" (ngSubmit)="addUser($event)">
+      <form
+        [formGroup]="userForm"
+        appearance="fill"
+        class="form-style"
+        (ngSubmit)="onSubmit()"
+      >
         <label>Nome</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" formControlName="name" />
+        <div
+          *ngIf="
+            (userForm.controls['name'].invalid &&
+              (userForm.controls['name'].dirty ||
+                userForm.controls['name'].touched)) ||
+            invalidForm
+          "
+          class="alert"
+        >
+          <div *ngIf="userForm.controls['name'].errors" class="error-message">
+            Digite um nome válido
+          </div>
+        </div>
         <label>CNPJ</label>
-        <input type="text" name="cnpj" />
+        <input type="text" name="cnpj" formControlName="cnpj" />
+        <div
+          *ngIf="
+            (userForm.controls['cnpj'].invalid &&
+              (userForm.controls['cnpj'].dirty ||
+                userForm.controls['cnpj'].touched)) ||
+            invalidForm
+          "
+          class="alert"
+        >
+          <div *ngIf="userForm.controls['cnpj'].errors" class="error-message">
+            Digite um CNPJ válido
+          </div>
+        </div>
         <label>Status</label>
-        <select name="status">
+        <select name="status" formControlName="status">
           <option value="Ativo">Ativo</option>
           <option value="Inativo">Inativo</option>
         </select>

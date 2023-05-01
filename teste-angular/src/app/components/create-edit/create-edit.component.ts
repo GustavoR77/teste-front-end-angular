@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Users } from 'src/app/models/users';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-edit',
@@ -10,32 +11,38 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class CreateEditComponent implements OnInit {
   mobileCheck = navigator.userAgent;
-  users: Users[] = [
-    {
-      name: '',
-      cnpj: '',
-      status: '',
-    },
-  ];
+  invalidForm = false;
 
-  constructor(private usersService: UserService) {}
+  userForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    cnpj: new FormControl('', Validators.required),
+    status: new FormControl('Ativo', Validators.required),
+  });
+
+  constructor(private usersService: UserService, private router: Router) {}
 
   ngOnInit() {}
 
-  addUser(data: any) {
-    const obj = {
-      name: data.target.name.value,
-      cnpj: data.target.cnpj.value,
-      status: data.target.status.value,
-    };
+  onSubmit() {
+    if (this.userForm.valid) {
+      this.invalidForm = false;
+      const obj = {
+        name: this.userForm.value.name,
+        cnpj: this.userForm.value.cnpj,
+        status: this.userForm.value.status,
+      };
 
-    console.log('teste obj', obj);
+      this.usersService.postUsers(obj).subscribe((data) => {
+        if (data) {
+          console.log(data);
+        }
+      });
 
-    this.usersService.postUsers(obj).subscribe((data) => {
-      if (data) {
-        console.log(data);
-      }
-    });
+      this.router.navigate(['']);
+
+    } else {
+      this.invalidForm = true;
+    }
   }
 
   mobileDevice() {
