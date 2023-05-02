@@ -61,6 +61,7 @@
 
 .name-column {
   font-size: 1.1rem;
+  white-space: nowrap;
 }
 
 .cnpj-column {
@@ -71,6 +72,7 @@
 
 .status-column {
   text-align: start;
+  white-space: nowrap;
 }
 
 .button-column {
@@ -83,16 +85,26 @@
 }
 
 @media only screen and (max-width: 762px) {
+  h2 {
+    white-space: nowrap;
+    font-size: 1.3rem;
+    margin-bottom: 0;
+  }
+
   .list-content {
     width: 100%;
   }
 
   .name-column {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     text-align: center;
+    white-space: normal;
   }
 
   .cnpj-column {
     width: 5%;
+    white-space: nowrap;
   }
 
   .status-column {
@@ -104,11 +116,20 @@
     width: 5%;
   }
 
+  .name-column,
+  .cnpj-column,
+  .status-column,
+  .button-column {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+
   .quantity-items {
     text-align: center;
   }
 
   .table-list-style {
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
   }
 }

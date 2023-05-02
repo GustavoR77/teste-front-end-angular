@@ -23,14 +23,13 @@
                 userForm.controls['name'].touched)) ||
             invalidForm
           "
-          class="alert"
         >
           <div *ngIf="userForm.controls['name'].errors" class="error-message">
             Digite um nome válido
           </div>
         </div>
         <label>CNPJ</label>
-        <input type="text" name="cnpj" formControlName="cnpj" />
+        <input type="text" name="cnpj" formControlName="cnpj" maxlength="20"/>
         <div
           *ngIf="
             (userForm.controls['cnpj'].invalid &&
@@ -38,7 +37,6 @@
                 userForm.controls['cnpj'].touched)) ||
             invalidForm
           "
-          class="alert"
         >
           <div *ngIf="userForm.controls['cnpj'].errors" class="error-message">
             Digite um CNPJ válido

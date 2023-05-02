@@ -33,8 +33,6 @@ export class TableListComponent implements OnInit {
   }
 
   editUser(id: any) {
-    console.log('show ID', id);
-    console.log('show ID URL', this.usersService.getUsersByID(id));
     this.usersService.getUsersByID(id);
     this.router.navigate(['/create-edit', id]);
   }
@@ -51,26 +49,3 @@ export class TableListComponent implements OnInit {
     }
   }
 }
-
-const ELEMENT_DATA: Users[] = [
-  {
-    name: 'Auto-Peças Joaquim LTDA.',
-    cnpj: '000.000.000/00000-00',
-    status: 'Inativo',
-  },
-  {
-    name: 'Auto-Peças Joaquim LTDA.',
-    cnpj: '000.000.000/00000-00',
-    status: 'Inativo',
-  },
-  {
-    name: 'Auto-Peças Joaquim LTDA.',
-    cnpj: '000.000.000/00000-00',
-    status: 'Inativo',
-  },
-  {
-    name: 'Auto-Peças Joaquim LTDA.',
-    cnpj: '000.000.000/00000-00',
-    status: 'Inativo',
-  },
-];
