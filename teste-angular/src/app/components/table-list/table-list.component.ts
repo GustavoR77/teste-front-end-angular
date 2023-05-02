@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { Users } from 'src/app/models/users';
+
 @Component({
   selector: 'app-table-list',
   templateUrl: './table-list.component.html',
@@ -12,7 +14,7 @@ export class TableListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'cnpj', 'status', 'getdetails'];
   users: Users[] = [];
 
-  constructor(private usersService: UserService) {}
+  constructor(private usersService: UserService, private router: Router) {}
 
   mobileCheck = navigator.userAgent;
   dataSource = new MatTableDataSource<Users>(this.users);
@@ -34,6 +36,7 @@ export class TableListComponent implements OnInit {
     console.log('show ID', id);
     console.log('show ID URL', this.usersService.getUsersByID(id));
     this.usersService.getUsersByID(id);
+    this.router.navigate(['/create-edit', id]);
   }
 
   mobileDevice() {

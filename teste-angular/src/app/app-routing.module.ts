@@ -7,6 +7,7 @@ import { CreateEditComponent } from './components/create-edit/create-edit.compon
 const routes: Routes = [
   { path: '', component: TableListComponent },
   { path: 'create-edit', component: CreateEditComponent },
+  { path: 'create-edit/:id', component: CreateEditComponent },
 ];
 
 @NgModule({

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 import { Users } from 'src/app/models/users';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -12,6 +13,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CreateEditComponent implements OnInit {
   mobileCheck = navigator.userAgent;
   invalidForm = false;
+  id = this.route.snapshot.params['id'];
+  pageTitle = '';
 
   userForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -19,9 +22,29 @@ export class CreateEditComponent implements OnInit {
     status: new FormControl('Ativo', Validators.required),
   });
 
-  constructor(private usersService: UserService, private router: Router) {}
+  constructor(
+    private usersService: UserService,
+    private router: Router,
+    private toastr: ToastrService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.id !== undefined) {
+      this.usersService.getUsersByID(this.id).subscribe((data) => {
+        if (data) {
+          this.userForm = new FormGroup({
+            name: new FormControl(data.name, Validators.required),
+            cnpj: new FormControl(data.cnpj, Validators.required),
+            status: new FormControl(data.status, Validators.required),
+          });
+        }
+      });
+      this.pageTitle = 'Editar Cliente';
+    } else {
+      this.pageTitle = 'Novo Cliente';
+    }
+  }
 
   onSubmit() {
     if (this.userForm.valid) {
@@ -31,15 +54,21 @@ export class CreateEditComponent implements OnInit {
         cnpj: this.userForm.value.cnpj,
         status: this.userForm.value.status,
       };
-
-      this.usersService.postUsers(obj).subscribe((data) => {
-        if (data) {
-          console.log(data);
-        }
-      });
-
-      this.router.navigate(['']);
-
+      if (this.pageTitle === 'Novo Cliente') {
+        this.usersService.postUsers(obj).subscribe((data) => {
+          if (data) {
+            this.toastr.success('Usuário criado com sucesso!');
+            this.router.navigate(['']);
+          }
+        });
+      } else {
+        this.usersService.putUsers(obj, this.id).subscribe((data) => {
+          if (data) {
+            this.toastr.success('Usuário editado com sucesso!');
+            this.router.navigate(['']);
+          }
+        });
+      }
     } else {
       this.invalidForm = true;
     }

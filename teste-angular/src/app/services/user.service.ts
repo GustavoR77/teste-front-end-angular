@@ -15,9 +15,12 @@ export class UserService {
     return this.http.get(`${environment.apiURL}/users`);
   }
   getUsersByID(id: any): Observable<any> {
-    return this.http.get(`${environment.apiURL}/users/:` + id);
+    return this.http.get(`${environment.apiURL}/users/` + id);
   }
   postUsers(user: Users) {
     return this.http.post<any>(`${environment.apiURL}/users`, user);
+  }
+  putUsers(user: Users, id: any) {
+    return this.http.put<any>(`${environment.apiURL}/users/` + id, user);
   }
 }
